@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24D81" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Pantry" representedClassName="Pantry" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="modifyDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="pantryItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PantryItem" inverseName="pantry" inverseEntity="PantryItem"/>
+    </entity>
+    <entity name="PantryItem" representedClassName="PantryItem" syncable="YES" codeGenerationType="class">
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="selected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="updateDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="pantry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pantry" inverseName="pantryItems" inverseEntity="Pantry"/>
+    </entity>
+    <entity name="Recipe" representedClassName="Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="cuisineType" optional="YES" attributeType="String"/>
+        <attribute name="dailyRecipe_isDailyRecipe" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="dailyRecipe_timeFrameID" optional="YES" attributeType="String"/>
+        <attribute name="estimatedServings" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="estimatedServingsModified" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="estimatedTotalCalories" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="estimatedTotalMinutes" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="expandIngredientsMagnitude" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="favorited" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="feasibility" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="imageAppGroupLocation" optional="YES" attributeType="String"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary"/>
+        <attribute name="imageURL" optional="YES" attributeType="URI"/>
+        <attribute name="input" optional="YES" attributeType="String"/>
+        <attribute name="likeState" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="nameModified" optional="YES" attributeType="String"/>
+        <attribute name="recipeID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="saved" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="sourceTikTokVideoID" optional="YES" attributeType="String"/>
+        <attribute name="summary" optional="YES" attributeType="String"/>
+        <attribute name="summaryModified" optional="YES" attributeType="String"/>
+        <attribute name="tastiness" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="updateDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="directions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RecipeDirection" inverseName="recipe" inverseEntity="RecipeDirection"/>
+        <relationship name="measuredIngredients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RecipeMeasuredIngredient" inverseName="recipe" inverseEntity="RecipeMeasuredIngredient"/>
+        <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipeTag" inverseName="recipe" inverseEntity="RecipeTag"/>
+    </entity>
+    <entity name="RecipeDirection" representedClassName="RecipeDirection" syncable="YES" codeGenerationType="class">
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="string" optional="YES" attributeType="String"/>
+        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="directions" inverseEntity="Recipe"/>
+    </entity>
+    <entity name="RecipeMeasuredIngredient" representedClassName="RecipeMeasuredIngredient" syncable="YES" codeGenerationType="class">
+        <attribute name="markedForDeletion" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="nameAndAmount" optional="YES" attributeType="String"/>
+        <attribute name="nameAndAmountModified" optional="YES" attributeType="String"/>
+        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="measuredIngredients" inverseEntity="Recipe"/>
+    </entity>
+    <entity name="RecipeTag" representedClassName="RecipeTag" syncable="YES" codeGenerationType="class">
+        <attribute name="tag" optional="YES" attributeType="String"/>
+        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="tag" inverseEntity="Recipe"/>
+    </entity>
+    <entity name="ShoppingList" representedClassName="ShoppingList" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="modifyDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ShoppingListIngredient" inverseName="list" inverseEntity="ShoppingListIngredient"/>
+    </entity>
+    <entity name="ShoppingListIngredient" representedClassName="ShoppingListIngredient" syncable="YES" codeGenerationType="class">
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="selected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ShoppingList" inverseName="ingredients" inverseEntity="ShoppingList"/>
+    </entity>
+</model>

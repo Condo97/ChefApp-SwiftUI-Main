@@ -1,0 +1,805 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 70;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BB5956D22CF54A570094B7B3 /* FacebookAEM in Frameworks */ = {isa = PBXBuildFile; productRef = BB5956D12CF54A570094B7B3 /* FacebookAEM */; };
+		BB5956D42CF54A570094B7B3 /* FacebookBasics in Frameworks */ = {isa = PBXBuildFile; productRef = BB5956D32CF54A570094B7B3 /* FacebookBasics */; };
+		BB5956D62CF54A570094B7B3 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = BB5956D52CF54A570094B7B3 /* FacebookCore */; };
+		BB5958DB2CF7DB460094B7B3 /* ShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BB5958D12CF7DB460094B7B3 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BB77C1F92C29B49400D2D6C4 /* AppsFlyerLib-Static in Frameworks */ = {isa = PBXBuildFile; productRef = BB77C1F82C29B49400D2D6C4 /* AppsFlyerLib-Static */; };
+		BB8E7FF52C222EBC009FB801 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BB8E7FF42C222EBC009FB801 /* CryptoSwift */; };
+		BB90EA472C229A9100246CEF /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = BB90EA462C229A9100246CEF /* PopupView */; };
+		BB90EA702C23219D00246CEF /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = BB90EA6F2C23219D00246CEF /* GoogleMobileAds */; };
+		BBD48D7F2C2345DC003A43F6 /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = BBD48D7E2C2345DC003A43F6 /* SwiftyGif */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BB5958D92CF7DB460094B7B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB4EB7B22AB67D9B00B02C75 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB5958D02CF7DB460094B7B3;
+			remoteInfo = ShareExtension;
+		};
+		BB5E6D4A2D85C5B8005A0062 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB4EB7B22AB67D9B00B02C75 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB4EB7B92AB67D9B00B02C75;
+			remoteInfo = "ChefApp-SwiftUI";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BB5958E02CF7DB460094B7B3 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BB5958DB2CF7DB460094B7B3 /* ShareExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB90EA602C229D6C00246CEF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		BB4EB7BA2AB67D9B00B02C75 /* ChefApp-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ChefApp-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB5958D12CF7DB460094B7B3 /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB5E6D462D85C5B8005A0062 /* ChefAppUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChefAppUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB8E7FEE2C222CB3009FB801 /* CoreAudioTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioTypes.framework; path = System/Library/Frameworks/CoreAudioTypes.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		BB5958DC2CF7DB460094B7B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = BB5958D02CF7DB460094B7B3 /* ShareExtension */;
+		};
+		BB595ABF2CF7DE130094B7B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = BB4EB7B92AB67D9B00B02C75 /* ChefApp-SwiftUI */;
+		};
+		BB595AC12CF7DEC70094B7B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Constants/Constants.swift,
+				Shared/SharedData.swift,
+				Util/AppGroupSaver.swift,
+			);
+			target = BB5958D02CF7DB460094B7B3 /* ShareExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		BB5958D22CF7DB460094B7B3 /* ShareExtension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (BB5958DC2CF7DB460094B7B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = ShareExtension; sourceTree = "<group>"; };
+		BB5959EA2CF7DE130094B7B3 /* ChefApp-SwiftUI */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (BB595ABF2CF7DE130094B7B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, BB595AC12CF7DEC70094B7B3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "ChefApp-SwiftUI"; sourceTree = "<group>"; };
+		BB5E6D472D85C5B8005A0062 /* ChefAppUnitTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ChefAppUnitTests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BB4EB7B72AB67D9B00B02C75 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB5956D42CF54A570094B7B3 /* FacebookBasics in Frameworks */,
+				BB5956D22CF54A570094B7B3 /* FacebookAEM in Frameworks */,
+				BB90EA472C229A9100246CEF /* PopupView in Frameworks */,
+				BB77C1F92C29B49400D2D6C4 /* AppsFlyerLib-Static in Frameworks */,
+				BBD48D7F2C2345DC003A43F6 /* SwiftyGif in Frameworks */,
+				BB8E7FF52C222EBC009FB801 /* CryptoSwift in Frameworks */,
+				BB90EA702C23219D00246CEF /* GoogleMobileAds in Frameworks */,
+				BB5956D62CF54A570094B7B3 /* FacebookCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB5958CE2CF7DB460094B7B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB5E6D432D85C5B8005A0062 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BB4EB7B12AB67D9B00B02C75 = {
+			isa = PBXGroup;
+			children = (
+				BB5959EA2CF7DE130094B7B3 /* ChefApp-SwiftUI */,
+				BB5958D22CF7DB460094B7B3 /* ShareExtension */,
+				BB5E6D472D85C5B8005A0062 /* ChefAppUnitTests */,
+				BB4EB7BB2AB67D9B00B02C75 /* Products */,
+				BB8E7FED2C222CB3009FB801 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		BB4EB7BB2AB67D9B00B02C75 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BB4EB7BA2AB67D9B00B02C75 /* ChefApp-SwiftUI.app */,
+				BB5958D12CF7DB460094B7B3 /* ShareExtension.appex */,
+				BB5E6D462D85C5B8005A0062 /* ChefAppUnitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BB8E7FED2C222CB3009FB801 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BB8E7FEE2C222CB3009FB801 /* CoreAudioTypes.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BB4EB7B92AB67D9B00B02C75 /* ChefApp-SwiftUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB4EB7E32AB67D9C00B02C75 /* Build configuration list for PBXNativeTarget "ChefApp-SwiftUI" */;
+			buildPhases = (
+				BB4EB7B62AB67D9B00B02C75 /* Sources */,
+				BB4EB7B72AB67D9B00B02C75 /* Frameworks */,
+				BB4EB7B82AB67D9B00B02C75 /* Resources */,
+				BB90EA602C229D6C00246CEF /* Embed Frameworks */,
+				BB5958E02CF7DB460094B7B3 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BB5958DA2CF7DB460094B7B3 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BB5959EA2CF7DE130094B7B3 /* ChefApp-SwiftUI */,
+			);
+			name = "ChefApp-SwiftUI";
+			packageProductDependencies = (
+				BB8E7FF42C222EBC009FB801 /* CryptoSwift */,
+				BB90EA462C229A9100246CEF /* PopupView */,
+				BB90EA6F2C23219D00246CEF /* GoogleMobileAds */,
+				BBD48D7E2C2345DC003A43F6 /* SwiftyGif */,
+				BB77C1F82C29B49400D2D6C4 /* AppsFlyerLib-Static */,
+				BB5956D12CF54A570094B7B3 /* FacebookAEM */,
+				BB5956D32CF54A570094B7B3 /* FacebookBasics */,
+				BB5956D52CF54A570094B7B3 /* FacebookCore */,
+			);
+			productName = Barback;
+			productReference = BB4EB7BA2AB67D9B00B02C75 /* ChefApp-SwiftUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BB5958D02CF7DB460094B7B3 /* ShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB5958DD2CF7DB460094B7B3 /* Build configuration list for PBXNativeTarget "ShareExtension" */;
+			buildPhases = (
+				BB5958CD2CF7DB460094B7B3 /* Sources */,
+				BB5958CE2CF7DB460094B7B3 /* Frameworks */,
+				BB5958CF2CF7DB460094B7B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				BB5958D22CF7DB460094B7B3 /* ShareExtension */,
+			);
+			name = ShareExtension;
+			packageProductDependencies = (
+			);
+			productName = ShareExtension;
+			productReference = BB5958D12CF7DB460094B7B3 /* ShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		BB5E6D452D85C5B8005A0062 /* ChefAppUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB5E6D4C2D85C5B8005A0062 /* Build configuration list for PBXNativeTarget "ChefAppUnitTests" */;
+			buildPhases = (
+				BB5E6D422D85C5B8005A0062 /* Sources */,
+				BB5E6D432D85C5B8005A0062 /* Frameworks */,
+				BB5E6D442D85C5B8005A0062 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BB5E6D4B2D85C5B8005A0062 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BB5E6D472D85C5B8005A0062 /* ChefAppUnitTests */,
+			);
+			name = ChefAppUnitTests;
+			packageProductDependencies = (
+			);
+			productName = ChefAppUnitTests;
+			productReference = BB5E6D462D85C5B8005A0062 /* ChefAppUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BB4EB7B22AB67D9B00B02C75 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					BB4EB7B92AB67D9B00B02C75 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					BB5958D02CF7DB460094B7B3 = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					BB5E6D452D85C5B8005A0062 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = BB4EB7B92AB67D9B00B02C75;
+					};
+				};
+			};
+			buildConfigurationList = BB4EB7B52AB67D9B00B02C75 /* Build configuration list for PBXProject "ChefApp-SwiftUI" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BB4EB7B12AB67D9B00B02C75;
+			packageReferences = (
+				BB8E7FF32C222EBC009FB801 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+				BB90EA452C229A9100246CEF /* XCRemoteSwiftPackageReference "PopupView" */,
+				BB90EA6E2C23219D00246CEF /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				BBD48D7D2C2345DC003A43F6 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
+				BB77C1F72C29B49400D2D6C4 /* XCRemoteSwiftPackageReference "AppsFlyerFramework-Static" */,
+				BB5956D02CF54A570094B7B3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				BB5E6D542D860ED7005A0062 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+			);
+			productRefGroup = BB4EB7BB2AB67D9B00B02C75 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BB4EB7B92AB67D9B00B02C75 /* ChefApp-SwiftUI */,
+				BB5958D02CF7DB460094B7B3 /* ShareExtension */,
+				BB5E6D452D85C5B8005A0062 /* ChefAppUnitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BB4EB7B82AB67D9B00B02C75 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB5958CF2CF7DB460094B7B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB5E6D442D85C5B8005A0062 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BB4EB7B62AB67D9B00B02C75 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB5958CD2CF7DB460094B7B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB5E6D422D85C5B8005A0062 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BB5958DA2CF7DB460094B7B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB5958D02CF7DB460094B7B3 /* ShareExtension */;
+			targetProxy = BB5958D92CF7DB460094B7B3 /* PBXContainerItemProxy */;
+		};
+		BB5E6D4B2D85C5B8005A0062 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB4EB7B92AB67D9B00B02C75 /* ChefApp-SwiftUI */;
+			targetProxy = BB5E6D4A2D85C5B8005A0062 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		BB4EB7E12AB67D9C00B02C75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BB4EB7E22AB67D9C00B02C75 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BB4EB7E42AB67D9C00B02C75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "ChefApp-SwiftUI/ChefApp-SwiftUI.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 65;
+				DEVELOPMENT_ASSET_PATHS = "\"ChefApp-SwiftUI/Preview Content\"";
+				DEVELOPMENT_TEAM = WNCN9TJFT3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ChefApp-SwiftUI/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = ChefApp;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Enable to scan pantry items with your camera.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Enable access to scan pantry items from your photo library.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Allows videos to be transcribed. Must be enabled to save video recipes.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Instead of a survey, this lets us know where you came from.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.43;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.acapplications.PantryPal;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		BB4EB7E52AB67D9C00B02C75 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "ChefApp-SwiftUI/ChefApp-SwiftUI.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 65;
+				DEVELOPMENT_ASSET_PATHS = "\"ChefApp-SwiftUI/Preview Content\"";
+				DEVELOPMENT_TEAM = WNCN9TJFT3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ChefApp-SwiftUI/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = ChefApp;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Enable to scan pantry items with your camera.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Enable access to scan pantry items from your photo library.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Allows videos to be transcribed. Must be enabled to save video recipes.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Instead of a survey, this lets us know where you came from.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.43;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.acapplications.PantryPal;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		BB5958DE2CF7DB460094B7B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 65;
+				DEVELOPMENT_TEAM = WNCN9TJFT3;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Instead of a survey, ChefApp automatically tells us where you found out about us.";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0.43;
+				PRODUCT_BUNDLE_IDENTIFIER = com.acapplications.PantryPal.ShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BB5958DF2CF7DB460094B7B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 65;
+				DEVELOPMENT_TEAM = WNCN9TJFT3;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Instead of a survey, ChefApp automatically tells us where you found out about us.";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0.43;
+				PRODUCT_BUNDLE_IDENTIFIER = com.acapplications.PantryPal.ShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BB5E6D4D2D85C5B8005A0062 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WNCN9TJFT3;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.acapplications.ChefAppUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChefApp-SwiftUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ChefApp-SwiftUI";
+			};
+			name = Debug;
+		};
+		BB5E6D4E2D85C5B8005A0062 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WNCN9TJFT3;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.acapplications.ChefAppUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChefApp-SwiftUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ChefApp-SwiftUI";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BB4EB7B52AB67D9B00B02C75 /* Build configuration list for PBXProject "ChefApp-SwiftUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB4EB7E12AB67D9C00B02C75 /* Debug */,
+				BB4EB7E22AB67D9C00B02C75 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB4EB7E32AB67D9C00B02C75 /* Build configuration list for PBXNativeTarget "ChefApp-SwiftUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB4EB7E42AB67D9C00B02C75 /* Debug */,
+				BB4EB7E52AB67D9C00B02C75 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB5958DD2CF7DB460094B7B3 /* Build configuration list for PBXNativeTarget "ShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB5958DE2CF7DB460094B7B3 /* Debug */,
+				BB5958DF2CF7DB460094B7B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB5E6D4C2D85C5B8005A0062 /* Build configuration list for PBXNativeTarget "ChefAppUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB5E6D4D2D85C5B8005A0062 /* Debug */,
+				BB5E6D4E2D85C5B8005A0062 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BB5956D02CF54A570094B7B3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 17.0.0;
+			};
+		};
+		BB5E6D542D860ED7005A0062 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:realm/SwiftLint.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.58.2;
+			};
+		};
+		BB77C1F72C29B49400D2D6C4 /* XCRemoteSwiftPackageReference "AppsFlyerFramework-Static" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppsFlyerSDK/AppsFlyerFramework-Static";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.14.4;
+			};
+		};
+		BB8E7FF32C222EBC009FB801 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.2;
+			};
+		};
+		BB90EA452C229A9100246CEF /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.10.4;
+			};
+		};
+		BB90EA6E2C23219D00246CEF /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+		BBD48D7D2C2345DC003A43F6 /* XCRemoteSwiftPackageReference "SwiftyGif" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kirualex/SwiftyGif.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BB5956D12CF54A570094B7B3 /* FacebookAEM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB5956D02CF54A570094B7B3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookAEM;
+		};
+		BB5956D32CF54A570094B7B3 /* FacebookBasics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB5956D02CF54A570094B7B3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookBasics;
+		};
+		BB5956D52CF54A570094B7B3 /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB5956D02CF54A570094B7B3 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		BB77C1F82C29B49400D2D6C4 /* AppsFlyerLib-Static */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB77C1F72C29B49400D2D6C4 /* XCRemoteSwiftPackageReference "AppsFlyerFramework-Static" */;
+			productName = "AppsFlyerLib-Static";
+		};
+		BB8E7FF42C222EBC009FB801 /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB8E7FF32C222EBC009FB801 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			productName = CryptoSwift;
+		};
+		BB90EA462C229A9100246CEF /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB90EA452C229A9100246CEF /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
+		};
+		BB90EA6F2C23219D00246CEF /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB90EA6E2C23219D00246CEF /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+		BBD48D7E2C2345DC003A43F6 /* SwiftyGif */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD48D7D2C2345DC003A43F6 /* XCRemoteSwiftPackageReference "SwiftyGif" */;
+			productName = SwiftyGif;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = BB4EB7B22AB67D9B00B02C75 /* Project object */;
+}

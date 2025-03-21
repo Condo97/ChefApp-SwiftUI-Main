@@ -1,0 +1,11 @@
+Barback/Constants/Keys.swift
+
+ChefApp-SwiftUI/Constants/Keys.swift
+Constants/Keys.swift
+
+# Build
+Build
+
+# fastlane
+fastlane/report.xml
+fastlane/test_output
