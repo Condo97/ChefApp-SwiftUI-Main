@@ -11,6 +11,8 @@ class RecipeBingImageGeneratorTests: XCTestCase {
         super.setUp()
         
         // Testing
+        
+        // Testing
         sut = RecipeBingImageGenerator()
 //        CDClient = TestCDClient()
         mockContext = CDClient.mainManagedObjectContext
