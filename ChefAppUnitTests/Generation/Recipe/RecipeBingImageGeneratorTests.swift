@@ -9,6 +9,8 @@ class RecipeBingImageGeneratorTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
+        
+        // Testing
         sut = RecipeBingImageGenerator()
 //        CDClient = TestCDClient()
         mockContext = CDClient.mainManagedObjectContext
