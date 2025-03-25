@@ -12,21 +12,36 @@ class EntryPromptCardViewModel: ObservableObject {
     
     // Required
     
+    /// Controls whether to display the "Create" text in the submit button
     @Published var showsCraftText: Bool = false
+    
+    /// Collection of placeholder texts that can be displayed in the input field
     var textFieldPlaceholders: [String]
     
     // Internal
     
+    /// Current index into the textFieldPlaceholders array to determine which placeholder to show
     @State var textFieldPlaceholderIndex: Int = 0
     
+    /// Matched geometry effect identifier for the submit button background animation
     @State var craftButtonBackgroundMatchedGeometryEffectID = "craftButtonBackground"
+    
+    /// Matched geometry effect identifier for the submit button text animation
     @State var craftButtonTextMatchedGeometryEffectID = "craftButtonText"
+    
+    /// Matched geometry effect identifier for the submit button arrow animation
     @State var craftButtonArrowMatchedGeometryEffectID = "craftButtonArrow"
     
+    /// Stores previously shown suggestions to manage suggestion history
     @State var previousSuggestions: [String] = []
     
+    /// Vertical offset value for positioning elements in the view
     @State var yOffset: CGFloat = 0.0
     
+    /// Initializes the EntryPromptCard view model with configurable parameters
+    /// - Parameters:
+    ///   - showsCraftText: Whether to show the "Create" text in the submit button
+    ///   - textFieldPlaceholders: Array of placeholder texts to display in the input field
     init(
         showsCraftText: Bool = false,
         textFieldPlaceholders: [String]
@@ -37,32 +52,39 @@ class EntryPromptCardViewModel: ObservableObject {
     
 }
 
+/// A card component that handles recipe creation inputs, including pantry items selection,
+/// text input, and suggestions with a customizable submit button
 struct EntryPromptCard: View {
     
+    /// View model containing card-specific state and configuration
     @ObservedObject var viewModel: EntryPromptCardViewModel
+    
+    /// View model containing the entry view state (prompt text, pantry items, and suggestions)
     @ObservedObject var entryViewModel: EntryViewModel
     
-//    @Binding var selectedPantryItems: [PantryItem]
-//    @Binding var inputFieldText: String
-//    @Binding var selectedSuggestions: [String]
-    
+    /// Closure called when the user taps the generate/submit button
     let onGenerate: () -> Void
     
+    /// System color scheme for adaptive styling
     @Environment(\.colorScheme) private var colorScheme
     
+    /// Namespace for coordinating matched geometry effects animations
     @Namespace private var namespace
     
+    /// Focus state for controlling keyboard focus on the text field
     @FocusState private var isTextFieldFocused: Bool
     
+    /// Object responsible for handling recipe generation requests
     @StateObject var recipeGenerator: RecipeGenerator = RecipeGenerator()
     
-    // TODO: Look up Form and Section
-    
+    /// Determines if the submit button should be disabled based on content and generation state
+    /// - Returns: true when the recipe is being created or when all input fields are empty
     var submitButtonDisabled: Bool {
         recipeGenerator.isCreating || (entryViewModel.promptText.isEmpty && entryViewModel.selectedPantryItems.isEmpty && entryViewModel.selectedSuggestions.isEmpty)
     }
     
     
+    /// The main body of the view defining the layout and appearance of the card
     var body: some View {
         ZStack {
 //            let _ = Self._printChanges()
@@ -90,6 +112,7 @@ struct EntryPromptCard: View {
         }
     }
     
+    /// Horizontal scrollable list of selected pantry items with removal capability
     var pantryItemList: some View {
         ScrollView(.horizontal) {
             HStack {
@@ -118,6 +141,7 @@ struct EntryPromptCard: View {
         .scrollIndicators(.never)
     }
     
+    /// Text input field for the user's recipe prompt with customizable placeholder
     var inputField: some View {
         TextField("", text: $entryViewModel.promptText, axis: .vertical)
             .textFieldTickerTint(colorScheme == .light ? Colors.elementBackground : Colors.foregroundText)
@@ -133,6 +157,7 @@ struct EntryPromptCard: View {
             .padding()
     }
     
+    /// Button to show the input field and create a recipe with animated transitions
     var showInputFieldButton: some View {
         Button(action: {
             // Do light haptic
@@ -175,6 +200,7 @@ struct EntryPromptCard: View {
         .bounceable()
     }
     
+    /// Flexible layout for displaying selected recipe suggestions with adaptive width
     var suggestionsList: some View {
         SingleAxisGeometryReader(axis: .horizontal) { geo in
             HStack {
@@ -195,6 +221,7 @@ struct EntryPromptCard: View {
         }
     }
     
+    /// Submit button with conditional text display and loading state for recipe generation
     var submitButton: some View {
         ZStack {
             KeyboardDismissingButton(action: {
@@ -261,20 +288,24 @@ struct EntryPromptCard: View {
     
 }
 
+/// Preview provider for EntryPromptCard that demonstrates the component with sample data
 #Preview {
     
+    /// Sample content view that hosts the EntryPromptCard with test data
     struct ContentView: View {
         
         @State var inputFieldText = "Input Field Text"
         @State var suggestionButtonPressed: Bool = false
         @State var selectedSuggestions: [String] = []
         
+        /// Sample placeholder texts to display in the input field
         private let textFieldPlaceholders = [
             "Test 1",
             "Test 2",
             "Tee hee :)"
         ]
         
+        /// Sample suggestion texts that can be added to the card
         private let suggestions = [
             "Suggestion 1",
             "Another suggestion",

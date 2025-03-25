@@ -43,7 +43,6 @@ struct TikTokVideoCardView: View {
                 } placeholder: {
                     Color.gray.opacity(0.3)
                 }
-//                .frame(width: 200, height: 300)
                 .clipped()
                 .cornerRadius(14)
                 .onTapGesture {
@@ -71,7 +70,6 @@ struct TikTokVideoCardView: View {
             } else {
                 // Placeholder if no cover image
                 Color.gray.opacity(0.3)
-//                    .frame(width: 200, height: 300)
                     .cornerRadius(14)
             }
             
@@ -125,6 +123,5 @@ struct TikTokVideoCardView: View {
                 .opacity(0.6)
             }
         }
-//        .frame(width: 200)
     }
 }

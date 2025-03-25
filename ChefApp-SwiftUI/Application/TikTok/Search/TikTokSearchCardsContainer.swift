@@ -15,10 +15,6 @@ struct TikTokSearchCardsContainer: View {
     @ObservedObject var tikTokSearchGenerator: TikTokSearchGenerator
     @Binding var tikTokSearchResponse: TikAPISearchResponse?
     
-//    @StateObject private var tikTokSearchGenerator = TikTokSearchGenerator()
-//    
-//    @State private var tikTokSearchResponse: TikTokSearchResponse?
-    
     var body: some View {
         Group {
             if let tikTokSearchResponse {

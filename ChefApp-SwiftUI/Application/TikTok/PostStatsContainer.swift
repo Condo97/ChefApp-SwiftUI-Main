@@ -23,9 +23,6 @@ struct PostStatsContainer: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
-//    @State private var postInfo: GetPostInfoResponse?
-//    @State private var postTranscriptions: [String] = []
-    
     @State private var isLoading: Bool = false
     
     @State private var isLoadingSummary: Bool = false

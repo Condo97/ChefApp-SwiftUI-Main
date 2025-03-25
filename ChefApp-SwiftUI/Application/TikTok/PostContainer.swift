@@ -149,15 +149,6 @@ struct PostContainer: View {
                     headers["Referer"] = referer
                 }
 
-//                // Optional: Add other headers if required (e.g., "User-Agent", "Referer", etc.)
-//                if let referer = videoLinkHeaders.referer {
-//                    headers["Referer"] = referer
-//                }
-//
-//                if let origin = videoLinkHeaders.origin {
-//                    headers["Origin"] = origin
-//                }
-
                 // Create AVURLAsset with custom headers
                 let asset = AVURLAsset(url: playURL, options: ["AVURLAssetHTTPHeaderFieldsKey": headers])
 

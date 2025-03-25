@@ -28,18 +28,10 @@ struct CaptureView: View {
     var body: some View {
         ZStack {
             CaptureCameraViewControllerRepresentable(
-//                isShowing: .constant(true),
-//                isLoading: $captureChatGenerator.isLoading,
                 reset: $resetCaptureView,
                 onAttach: { image, cropFrame, unmodifiedImage in
                     
                 })
-//            .onReceive(captureChatGenerator.$isLoading, perform: { isLoading in
-//                if isLoading {
-//                    // Show detailView on receive true from isGenerating
-//                    isShowingDetailView = true
-//                }
-//            })
         }
         .ignoresSafeArea()
         .navigationTitle("")

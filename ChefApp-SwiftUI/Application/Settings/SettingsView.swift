@@ -52,42 +52,6 @@ struct SettingsView: View {
         .ultraViewPopover(isPresented: $isShowingUltraView)
     }
     
-//    var header: some View {
-//        ZStack {
-//            HStack {
-//                VStack {
-//                    Spacer()
-//                    Button(action: {
-//                        withAnimation {
-//                            isShowing = false
-//                        }
-//                    }) {
-//                        Text("Back")
-//                            .font(.custom(Constants.FontName.black, size: 20.0))
-//                            .foregroundStyle(Colors.elementText)
-//                            .padding(.bottom, 8)
-//                            .padding(.leading)
-//                    }
-//                }
-//                Spacer()
-//            }
-//            
-//            HStack {
-//                Spacer()
-//                VStack {
-//                    Spacer()
-//                    Text("Barback")
-//                        .font(.custom(Constants.FontName.appname, size: 34.0))
-//                        .foregroundStyle(Colors.elementText)
-//                        .padding(4)
-//                }
-//                Spacer()
-//            }
-//        }
-//        .frame(height: 100)
-//        .background(foregroundColor)
-//    }
-    
     var premium: some View {
         Button(action: {
             HapticHelper.doLightHaptic()

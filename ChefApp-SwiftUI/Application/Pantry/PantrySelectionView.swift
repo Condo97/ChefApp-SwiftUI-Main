@@ -106,7 +106,7 @@ struct PantrySelectionView: View {
             ?
             Color(uiColor: .systemGreen).opacity(0.4)
             :
-                Colors.foreground
+            Colors.foreground
         )
         .cornerRadius(14.0)
     }

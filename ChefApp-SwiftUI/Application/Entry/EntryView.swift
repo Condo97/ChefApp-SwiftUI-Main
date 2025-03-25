@@ -13,22 +13,45 @@ class EntryViewModel: ObservableObject, Identifiable {
     
     // Required
     
+    /// The message displayed below the title in the entry view
     @Published var subtitleMessage: String
+    
+    /// Array of pantry items (ingredients) selected by the user
     @Published var selectedPantryItems: [PantryItem]
+    
+    /// Additional options for recipe generation (meal type, dietary restrictions, etc.)
     @Published var generationAdditionalOptions: RecipeGenerationAdditionalOptions
+    
+    /// Array of suggestions selected by the user from the suggestions grid
     @Published var selectedSuggestions: [String]
+    
+    /// Text entered by the user to describe the recipe they want
     @Published var promptText: String
+    
+    /// Controls whether the title "Create Recipe..." is displayed
     let showsTitle: Bool
     
     // Internal
     
+    /// View model for the text input card at the bottom of the screen
     @Published var presentingEntryPromptCardViewModel: EntryPromptCardViewModel = EntryPromptCardViewModel(textFieldPlaceholders: [
         "Enter Prompt..."
     ])
     
+    /// Tracks whether advanced options panel is expanded
     @Published var isDisplayingAdvancedOptions: Bool = false
+    
+    /// Tracks whether the pantry selection view is being displayed
     @Published var isShowingPantrySelectionView: Bool = false
     
+    /// Initializes a new EntryViewModel with customizable properties
+    /// - Parameters:
+    ///   - subtitleMessage: The message shown below the title
+    ///   - selectedPantryItems: Initial array of selected pantry items (defaults to empty)
+    ///   - generationAdditionalOptions: Recipe generation options (defaults to normal)
+    ///   - selectedSuggestions: Initial array of selected suggestions (defaults to empty)
+    ///   - promptText: Initial text for the prompt field (defaults to empty)
+    ///   - showsTitle: Whether to show the title "Create Recipe..." (defaults to true)
     init(
         subtitleMessage: String,
         selectedPantryItems: [PantryItem] = [],
@@ -198,4 +221,3 @@ struct EntryView: View {
     
     
 }
-

@@ -33,9 +33,6 @@ struct PantrySelectionMiniView: View {
             KeyboardDismissingButton(action: {
                 HapticHelper.doLightHaptic()
                 
-                //                    withAnimation(.easeInOut(duration: 0.1)) {
-                //                        isPantryShowing = true
-                //                    }
                 withAnimation {
                     isShowingPantrySelectionView = true
                 }
@@ -104,11 +101,6 @@ struct PantrySelectionMiniView: View {
                             .padding(8)
                     }
                 })
-//            PantryView(
-//                selectedItems: $selectedPantryItems,
-//                multipleSelection: true,
-//                isActive: $isShowingPantrySelectionView,
-//                shouldShowEntryView: .constant(false))
             .background(Colors.background)
             .ignoresSafeArea()
         }
@@ -152,7 +144,7 @@ struct PantrySelectionMiniView: View {
             ?
             Color(uiColor: .systemGreen).opacity(0.4)
             :
-                Colors.foreground
+            Colors.foreground
         )
         .cornerRadius(14.0)
     }

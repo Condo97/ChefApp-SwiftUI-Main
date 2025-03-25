@@ -9,8 +9,6 @@ import SwiftUI
 
 struct PostStatsView: View {
     
-//    var tikTokSearchResponseItem: TikAPISearchResponse.Item  // Using Item from TikTokSearchResponse
-//    let author: String?
     let authorNickname: String?
     let avatarURLString: String?
     let desc: String?

@@ -11,7 +11,6 @@ struct EditPantryItemView: View {
     
     @State var pantryItem: PantryItem
     @Binding var isActive: Bool
-//    @Binding var alertShowingHasChanges: Bool
     
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -21,22 +20,12 @@ struct EditPantryItemView: View {
     
     @State private var updatedNameText: String = ""
     @State private var updatedCategoryText: String = ""
-//    @State private var updatedAmountText: String = ""
-//    @State private var updatedExpirationDate: Date = Date()
     
     @State private var alertShowingEmptyNameField: Bool = false
     @State private var alertShowingErrorSaving: Bool = false
     @State private var alertShowingShouldSave: Bool = false
     @State private var alertShowingDeleteItem: Bool = false
     @State private var alertShowingDuplicateItem: Bool = false
-    
-//    init(pantryItem: PantryItem, isActive: Binding<Bool>) {
-//        self._item = StateObject(wrappedValue: pantryItem)
-//        self._isActive = isActive
-//        
-//        self.originalNameText = pantryItem.name ?? ""
-//        self.originalCategoryText = pantryItem.category ?? ""
-//    }
     
     var body: some View {
         ZStack {
@@ -102,14 +91,6 @@ struct EditPantryItemView: View {
             if let category = pantryItem.category {
                 updatedCategoryText = category
             }
-            
-//            if let amount = pantryItem.amount {
-//                updatedAmountText = amount
-//            }
-//            
-//            if let expirationDate = pantryItem.expiration {
-//                updatedExpirationDate = expirationDate
-//            }
         }
         .alert("Missing Name", isPresented: $alertShowingEmptyNameField) {
             Button("Close", action: {
@@ -202,67 +183,6 @@ struct EditPantryItemView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 14.0))
         }
     }
-    
-//    var amountView: some View {
-//        // TODO: This should be a picker with all the categories listed so that the user can pick from the categories
-//        VStack {
-//            HStack {
-//                Text("Amount:")
-//                    .font(.custom(Constants.FontName.body, size: 17.0))
-//                Text("(Optional)")
-//                    .font(.custom(Constants.FontName.lightOblique, size: 14.0))
-//                Spacer()
-//            }
-//            .frame(minHeight: 0)
-//            
-//            TextField(
-//                text: $updatedAmountText,
-//                prompt: Text("Amount of Item")) {}
-//                .textFieldTickerTint(colorScheme == .light ? Colors.elementBackground : Colors.foregroundText)
-//                .keyboardDismissingTextFieldToolbar("Done", color: Colors.elementBackground)
-//                .font(.custom(Constants.FontName.body, size: 14.0))
-//                .padding([.leading, .trailing])
-//                .padding([.top, .bottom], 8)
-//                .background(Colors.foreground)
-//                .clipShape(RoundedRectangle(cornerRadius: 14.0))
-//            
-//            HStack {
-//                Text("The amount you have of this item. ex. 2, 3 ml, 5 oz, etc.") // TODO: This should be a picker! Also this text should be changed for the picker potentially
-//                    .multilineTextAlignment(.leading)
-//                    .font(.custom(Constants.FontName.body, size: 12.0))
-//                    .foregroundStyle(Colors.foregroundText)
-//                    .opacity(0.6)
-//                Spacer()
-//            }
-//        }
-//    }
-//    
-//    var expirationDateView: some View {
-//        VStack {
-//            HStack {
-//                Text("Expiration Date:")
-//                    .font(.custom(Constants.FontName.body, size: 17.0))
-//                Text("(Optional)")
-//                    .font(.custom(Constants.FontName.lightOblique, size: 14.0))
-//                Spacer()
-//            }
-//            .frame(minHeight: 0)
-//            
-//            DatePicker("Select Expiration Date", selection: $updatedExpirationDate, displayedComponents: [.date] )
-//                .datePickerStyle(WheelDatePickerStyle())
-//                .frame(height: 80.0)
-//                .padding()
-//            
-//            HStack {
-//                Text("The amount you have of this pantryItem. ex. 2, 3 ml, 5 oz, etc.") // TODO: This should be a picker! Also this text should be changed for the picker potentially
-//                    .multilineTextAlignment(.leading)
-//                    .font(.custom(Constants.FontName.body, size: 12.0))
-//                    .foregroundStyle(Colors.foregroundText)
-//                    .opacity(0.6)
-//                Spacer()
-//            }
-//        }
-//    }
     
     func deleteAndDismissEditing() {
         viewContext.delete(pantryItem)

@@ -19,7 +19,6 @@ struct TikTokSearchCardsView: View {
                 ForEach(tikTokSearchResponse.body.apiResponse.itemList.indices, id: \.self) { index in
                     let item = tikTokSearchResponse.body.apiResponse.itemList[index]
                     let videoLinkHeaders = tikTokSearchResponse.body.apiResponse.other.videoLinkHeaders
-//                    TikTokVideoCardView(tikTokSearchResponseItem: item, videoLinkHeaders: videoLinkHeaders, justVideos: justVideos)
                     TikTokVideoCardView(
                         videoCoverURLString: item.video?.cover,
                         videoPlayAddr: item.video?.playAddr,

@@ -10,24 +10,35 @@ import SwiftUI
 
 class RecipeGenerationSwipeViewModel: RecipeGenerationViewModel {
     
+    /// Flag indicating whether the next recipe is currently being generated
     @Published var isGeneratingNext: Bool = false
     
+    /// View model for the pantry view presented as a sheet
     @Published var presentingPantryViewModel: PantryViewModel?
+    /// View model for the entry view presented as a sheet
     @Published var presentingEntryViewModel: EntryViewModel?
     
+    /// Default pantry items used for demo purposes when user has no pantry items
     let demoPantryItems: String = "Salt, pepper, olive oil, butter, garlic, onion, tomato, chicken, flour, sugar, eggs, milk, cheese, basil, oregano, paprika, cumin, ginger, soy sauce, honey, lemon, beef, pork, rice, pasta, potatoes, carrots, celery, mushrooms, spinach, cilantro, parsley, vinegar, baking powder, baking soda, vanilla extract, cinnamon, nutmeg, canola oil, chicken broth, beef broth, bell peppers, zucchini, corn, beans, shrimp, tofu, yogurt, maple syrup, tahini, mustard, cilantro"
     
+    /// Returns selected suggestions joined by commas or nil if no suggestions are selected
     var parsedModifiers: String? {
         // Right now if selectedSuggestions is empty nil, otherwise just the selectedSuggestions separated by commas
         suggestions.isEmpty ? nil : suggestions.joined(separator: ", ")
     }
     
+    /// Returns the maximum number of recipes that can be automatically generated based on premium status
+    /// - Parameter premiumUpdater: The premium status updater to check premium status
+    /// - Returns: The maximum number of recipes that can be auto-generated
     func getMaxAutoGenerate(premiumUpdater: PremiumUpdater) -> Int {
         (premiumUpdater.isPremium ? Constants.Generation.premiumAutomaticRecipeGenerationLimit : Constants.Generation.freeAutomaticRecipeGenerationLimit)
         +
         2
     }
     
+    /// Fetches all pantry items from Core Data
+    /// - Parameter managedContext: The NSManagedObjectContext to fetch from
+    /// - Returns: Array of PantryItem objects or nil if fetching fails
     func getAllPantryItems(in managedContext: NSManagedObjectContext) -> [PantryItem]? {
         do {
             return try managedContext.performAndWait { try managedContext.fetch(PantryItem.fetchRequest()) }
@@ -38,6 +49,9 @@ class RecipeGenerationSwipeViewModel: RecipeGenerationViewModel {
         }
     }
     
+    /// Creates a formatted input string for recipe generation based on current pantry items
+    /// - Parameter managedContext: The NSManagedObjectContext to fetch additional data from if needed
+    /// - Returns: A formatted string to use as input for recipe generation
     func getParsedInput(in managedContext: NSManagedObjectContext) -> String {
         // TODO: Should I add anything else to the input string if selectedPantryItems is not empty?
         // Create parsedInput starting with input
@@ -51,17 +65,12 @@ class RecipeGenerationSwipeViewModel: RecipeGenerationViewModel {
         
         // If pantryItems is empty or generationAdditionalOptions is useAllGivenIngredients add all pantry items, otherwise add pantry items
         if pantryItems.isEmpty {
-            do {
-                if let allPantryItems = getAllPantryItems(in: managedContext),
-                   !allPantryItems.isEmpty {
-                    parsedInput += allPantryItems.shuffled().compactMap({$0.name}).joined(separator: ", ")
-                } else {
-                    // Append demo text TODO: Make sure this cannot be shown unless user enters ingredients, or handle in a better way
-                    parsedInput += demoPantryItems.split(separator: ", ").shuffled().joined(separator: ", ")//"<No ingredients, the user is demoing the recipe creation ability.> Imagine there are common ingredients included here."
-                }
-            } catch {
-                // TODO: Handle Errors
-                print("Error getting all pantry items for parsedInput in RecipeGenerationSwipeView... \(error)")
+            if let allPantryItems = getAllPantryItems(in: managedContext),
+               !allPantryItems.isEmpty {
+                parsedInput += allPantryItems.shuffled().compactMap({$0.name}).joined(separator: ", ")
+            } else {
+                // Append demo text TODO: Make sure this cannot be shown unless user enters ingredients, or handle in a better way
+                parsedInput += demoPantryItems.split(separator: ", ").shuffled().joined(separator: ", ")//"<No ingredients, the user is demoing the recipe creation ability.> Imagine there are common ingredients included here."
             }
         } else {
             parsedInput += pantryItems.shuffled().compactMap({$0.name}).joined(separator: ", ") // TODO: Should there be anything else if the name cannot be unwrapped? Since that is the only attribute besides category it's most likely always going to be filled, right, or at least it's expected behaviour to be filled, so it's probably fine to just compactmap filtering with just the name
@@ -70,11 +79,18 @@ class RecipeGenerationSwipeViewModel: RecipeGenerationViewModel {
         return parsedInput
     }
     
+    /// Creates an input string that includes instructions to make the generated recipe different from existing recipes
+    /// - Parameters:
+    ///   - recipeSwipeCardsViewModel: The view model containing existing recipes
+    ///   - managedContext: The NSManagedObjectContext to fetch additional data from if needed
+    /// - Returns: A formatted string with instructions to generate a different recipe
     func getParsedInputDifferentThanNewRecipes(recipeSwipeCardsViewModel: RecipeSwipeCardsView.Model, in managedContext: NSManagedObjectContext) -> String {
         let allCards = recipeSwipeCardsViewModel.swipedCards + recipeSwipeCardsViewModel.unswipedCards
         return getParsedInput(in: managedContext) + (allCards.count > 0 ? "\nDIFFERENT THAN RECIPE: " + allCards.compactMap({$0.name != nil && $0.summary != nil ? "\($0.name!), \($0.summary!)" : nil}).joined(separator: "\nAND DIFFERENT THAN: ") : "")
     }
     
+    /// Handles actions when the generate button is pressed
+    /// - Parameter recipeSwipeCardsViewModel: The view model to reset
     func onGenerate(recipeSwipeCardsViewModel: RecipeSwipeCardsView.Model) {
         // Reset swipe cards
         recipeSwipeCardsViewModel.reset()
@@ -83,6 +99,13 @@ class RecipeGenerationSwipeViewModel: RecipeGenerationViewModel {
         presentingEntryViewModel = nil
     }
     
+    /// Asynchronously generates the next recipe and its image, then adds it to the swipe cards
+    /// - Parameters:
+    ///   - recipeGenerator: The generator used to create the recipe
+    ///   - recipeBingImageGenerator: The generator used to create the recipe image
+    ///   - recipeSwipeCardsViewModel: The view model to add the new recipe card to
+    ///   - managedContext: The NSManagedObjectContext to use for persistence
+    /// - Throws: Errors from recipe generation, image generation, or authentication
     func generateNext(
         recipeGenerator: RecipeGenerator,
         recipeBingImageGenerator: RecipeBingImageGenerator,
@@ -125,7 +148,13 @@ class RecipeGenerationSwipeViewModel: RecipeGenerationViewModel {
         }
     }
     
-    /* Check if */
+    /// Checks if more recipes should be generated and triggers generation if needed
+    /// - Parameters:
+    ///   - premiumUpdater: The premium status updater to check limits
+    ///   - recipeGenerator: The generator used to create the recipe
+    ///   - recipeBingImageGenerator: The generator used to create the recipe image
+    ///   - recipeSwipeCardsViewModel: The view model containing current recipe cards
+    ///   - managedContext: The NSManagedObjectContext to use for persistence
     func generateNextIfQueueHasFewerThanMaxAutoGenerate(
         premiumUpdater: PremiumUpdater,
         recipeGenerator: RecipeGenerator,
@@ -157,22 +186,33 @@ class RecipeGenerationSwipeViewModel: RecipeGenerationViewModel {
 struct RecipeGenerationSwipeView: View {
     
     // Required
+    /// The view model controlling recipe generation and swipe functionality
     @ObservedObject var viewModel: RecipeGenerationSwipeViewModel
+    /// Callback triggered when a recipe is swiped left or right
     let onSwipe: (_ recipe: Recipe, _ swipeDirection: RecipeSwipeCardView.SwipeDirection) -> Void
+    /// Callback triggered when a recipe is saved from the detail view
     let onDetailViewSave: (Recipe) -> Void
+    /// Callback triggered when an undo action is performed on a previously swiped recipe
     let onUndo: (_ recipe: Recipe, _ previousSwipeDirection: RecipeSwipeCardView.SwipeDirection) -> Void
+    /// Callback triggered when the view is closed
     let onClose: () -> Void
     
     // Optional
+    /// Object responsible for generating recipes
     @StateObject var recipeGenerator: RecipeGenerator = RecipeGenerator()
+    /// Object responsible for generating recipe images using Bing
     @StateObject var recipeBingImageGenerator: RecipeBingImageGenerator = RecipeBingImageGenerator()
+    /// View model that manages the swipeable recipe cards
     @StateObject var recipeSwipeCardsViewModel: RecipeSwipeCardsView.Model = RecipeSwipeCardsView.Model(cards: []) // Handles cards
     
     // Private
+    /// Core Data managed object context from the environment
     @Environment(\.managedObjectContext) private var viewContext
     
+    /// Object that tracks the user's premium status
     @EnvironmentObject private var premiumUpdater: PremiumUpdater
     
+    /// Returns true if a recipe or image is currently being generated
     var isLoadingRecipe: Bool {
         recipeGenerator.isCreating || recipeBingImageGenerator.isGenerating
     }

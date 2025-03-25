@@ -30,10 +30,6 @@ struct RecipeEditableIngredientView: View {
         self._parsedMeasuredIngredient = State(initialValue: MeasurementIngredientParser.parseFirstMeasurement(from: measuredIngredient.nameAndAmountModified ?? measuredIngredient.nameAndAmount ?? "", leastToGreatestPossibleFractionValues: MeasuredIngredientPickerView.defaultMinToMaxFractionStrings))
     }
     
-//    private var isDisabledByScrolling: Bool {
-//        expandedPercentage < upperBound
-//    }
-    
     private var backgroundFillColor: Color {
         if measuredIngredient.markedForDeletion {
             return Color(uiColor: .systemRed)
@@ -43,23 +39,6 @@ struct RecipeEditableIngredientView: View {
         }
         return Colors.background
     }
-    
-//    private var buttonFillOpacity: CGFloat {
-//        guard !isDisabled else {
-//            return lowerBound
-//        }
-//        if expandedPercentage >= upperBound {
-//            return 1.0
-//        } else if expandedPercentage <= lowerBound {
-//            return 0.0
-//        } else {
-//            return (expandedPercentage - lowerBound) * (1.0 / (upperBound - lowerBound))
-//        }
-//    }
-    
-//    private var textOpacity: CGFloat {
-//        max(buttonFillOpacity, 0.5)
-//    }
     
     var body: some View {
         ZStack {

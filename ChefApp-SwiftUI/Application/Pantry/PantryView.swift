@@ -50,114 +50,107 @@ struct PantryView: View {
     
     
     var body: some View {
-        ZStack {
-            ZStack {
-                VStack {
-                    filterSelection
-                    
-                    ScrollView {
-                        Spacer(minLength: 28.0)
+        VStack {
+            ScrollView {
+                Spacer(minLength: 28.0)
+                
+                // Refresh and Add buttons
+                if !viewModel.pantryIsEmpty(managedContext: viewContext) {
+                    HStack {
+                        refreshPantryCategoriesButton
                         
-                        // Refresh and Add buttons
-                        if !viewModel.pantryIsEmpty(managedContext: viewContext) {
-                            HStack {
-                                refreshPantryCategoriesButton
-                                
-                                addPantryItemsButton
-                            }
-                            .padding([.leading, .trailing])
-                        }
-                        
-                        // Create Recipe button
-                        if !viewModel.selectedItems.isEmpty {
-                            if onCreateRecipe != nil {
-                                Button(action: {
-                                    HapticHelper.doLightHaptic()
-                                    
-                                    withAnimation {
-                                        onCreateRecipe?()
-                                    }
-                                }) {
-                                    ZStack {
-                                        Text("Create Recipe")
-                                            .font(.custom(Constants.FontName.heavy, size: 20.0))
-                                        
-                                        HStack {
-                                            Spacer()
-                                            Image(systemName: "chevron.right")
-                                                .imageScale(.medium)
-                                        }
-                                    }
-                                    .foregroundStyle(Colors.elementText)
-                                    .padding()
-                                    .background(Colors.elementBackground)
-                                    .clipShape(RoundedRectangle(cornerRadius: 14.0))
-                                }
-                                .buttonStyle(.plain)
-                                .padding([.leading, .trailing])
-                            }
-                        }
-                        
-                        // Empty pantry items display
-                        if viewModel.pantryIsEmpty(managedContext: viewContext) {
-                            VStack {
-                                // Empty pantry information
-                                Text("Empty Pantry")
-                                    .font(.heavy, 20)
-                                Text("Scan your fridge or pantry to add items.")
-                                    .font(.body, 17)
-                                    .padding(.bottom)
-                                
-                                // Scan pantry button
-                                Button(action: {
-                                    viewModel.presentingAddToPantryDirectlyToCameraPopupViewModel = AddToPantryViewModel()
-                                }) {
-                                    ZStack {
-                                        Text("Scan Fridge or Pantry")
-                                            .font(.heavy, 17)
-                                        HStack {
-                                            Spacer()
-                                            Image(systemName: "camera")
-                                                .font(.body, 17)
-                                        }
-                                    }
-                                    .appButtonStyle()
-                                }
-                                
-                                // Add pantry button
-                                Button(action: {
-                                    viewModel.presentingAddToPantryPopupViewModel = AddToPantryViewModel()
-                                }) {
-                                    ZStack {
-                                        Text("Add Items Manually")
-                                            .font(.heavy, 17)
-                                        HStack {
-                                            Spacer()
-                                            Image(systemName: "plus")
-                                                .font(.body, 17)
-                                        }
-                                    }
-                                    .appButtonStyle(foregroundColor: Colors.elementBackground, backgroundColor: Colors.elementText)
-                                }
-                            }
-                            .padding(.horizontal)
-                        }
-                        
-                        // Pantry items
-                        HStack {
-                            PantryItemsContainer(
-                                selectedItems: $viewModel.selectedItems,
-                                editMode: $editMode,
-                                showsContextMenu: true,
-                                selectionColor: .green)
-                            //                                .fixedSize(horizontal: true, vertical: false) // TODO: Fix this so that it expands properly and stuff
+                        addPantryItemsButton
+                    }
+                    .padding([.leading, .trailing])
+                }
+                
+                // Create Recipe button
+                if !viewModel.selectedItems.isEmpty {
+                    if onCreateRecipe != nil {
+                        Button(action: {
+                            HapticHelper.doLightHaptic()
                             
-                            Spacer()
+                            withAnimation {
+                                onCreateRecipe?()
+                            }
+                        }) {
+                            ZStack {
+                                Text("Create Recipe")
+                                    .font(.custom(Constants.FontName.heavy, size: 20.0))
+                                
+                                HStack {
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .imageScale(.medium)
+                                }
+                            }
+                            .foregroundStyle(Colors.elementText)
+                            .padding()
+                            .background(Colors.elementBackground)
+                            .clipShape(RoundedRectangle(cornerRadius: 14.0))
                         }
-                        
-                        Spacer(minLength: 80.0)
+                        .buttonStyle(.plain)
+                        .padding([.leading, .trailing])
                     }
                 }
+                
+                // Empty pantry items display
+                if viewModel.pantryIsEmpty(managedContext: viewContext) {
+                    VStack {
+                        // Empty pantry information
+                        Text("Empty Pantry")
+                            .font(.heavy, 20)
+                        Text("Scan your fridge or pantry to add items.")
+                            .font(.body, 17)
+                            .padding(.bottom)
+                        
+                        // Scan pantry button
+                        Button(action: {
+                            viewModel.presentingAddToPantryDirectlyToCameraPopupViewModel = AddToPantryViewModel()
+                        }) {
+                            ZStack {
+                                Text("Scan Fridge or Pantry")
+                                    .font(.heavy, 17)
+                                HStack {
+                                    Spacer()
+                                    Image(systemName: "camera")
+                                        .font(.body, 17)
+                                }
+                            }
+                            .appButtonStyle()
+                        }
+                        
+                        // Add pantry button
+                        Button(action: {
+                            viewModel.presentingAddToPantryPopupViewModel = AddToPantryViewModel()
+                        }) {
+                            ZStack {
+                                Text("Add Items Manually")
+                                    .font(.heavy, 17)
+                                HStack {
+                                    Spacer()
+                                    Image(systemName: "plus")
+                                        .font(.body, 17)
+                                }
+                            }
+                            .appButtonStyle(foregroundColor: Colors.elementBackground, backgroundColor: Colors.elementText)
+                        }
+                    }
+                    .padding(.horizontal)
+                }
+                
+                // Pantry items
+                HStack {
+                    PantryItemsContainer(
+                        selectedItems: $viewModel.selectedItems,
+                        editMode: $editMode,
+                        showsContextMenu: true,
+                        selectionColor: .green)
+                    
+                    Spacer()
+                }
+                
+                Spacer(minLength: 80.0)
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -200,12 +193,6 @@ struct PantryView: View {
         // Add to pantry popup
         .addToPantryPopup(viewModel: $viewModel.presentingAddToPantryPopupViewModel, showCameraOnAppear: false)
         .addToPantryPopup(viewModel: $viewModel.presentingAddToPantryDirectlyToCameraPopupViewModel, showCameraOnAppear: true)
-    }
-    
-    var filterSelection: some View {
-        HStack {
-            
-        }
     }
     
     var addPantryItemsButton: some View {

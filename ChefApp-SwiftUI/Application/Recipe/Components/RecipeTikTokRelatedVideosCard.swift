@@ -21,18 +21,6 @@ struct RecipeTikTokRelatedVideosCard: View {
         VStack(spacing: 0.0) {
             if let name = recipe.name,
                let summary = recipe.summary {
-//                Button(action: { withAnimation(.bouncy(duration: 0.5)) { isDisplayingRelatedVideos.toggle() } }) {
-//                    HStack {
-//                        Text("Related Videos")
-//                            .font(.heavy, 17.0)
-//                        Spacer()
-//                        Image(systemName: isDisplayingRelatedVideos ? "chevron.up" : "chevron.down")
-//                            .font(.body, 17.0)
-//                    }
-//                    .padding(.horizontal)
-//                }
-//                .foregroundStyle(Colors.foregroundText)
-//                .padding(.bottom, 8)
                 
                 if isDisplayingRelatedVideos {
                     TikTokSearchCardsContainer(

@@ -12,24 +12,6 @@ struct PantryItemView: View {
     
     @State var pantryItem: PantryItem
     var titleNoSubtitleFont: Font = .custom(Constants.FontName.body, size: 17.0)
-//    var titleFont: Font = .custom(Constants.FontName.heavy, size: 17.0) TODO: This is not implemented anymore due to subtitle not being implemented
-//    var subtitleFont: Font = .custom(Constants.FontName.light, size: 12.0) TODO: This is not implemented anymore check if this should be or improves functionality
-    
-//    var image: UIImage
-    
-//    static func from(pantryItem: PantryItem, titleFont: Font = .custom(Constants.FontName.heavy, size: 17.0), subtitleFont: Font = .custom(Constants.FontName.light, size: 12.0)) -> PantryItemView? {
-//        guard let title = pantryItem.name else {
-//            // TODO: Handle errors
-//            return nil
-//        }
-//        let subtitle: String? = {
-//            if pantryItem.amount >
-//            
-//            return nil
-//        }()
-//        
-//        return PantryItemView(title: LocalizedStringKey(title), subtitle: subtitle, titleFont: titleFont, subtitleFont: subtitleFont)
-//    }
     
     var customDateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
@@ -39,9 +21,6 @@ struct PantryItemView: View {
     
     var body: some View {
         VStack {
-//            Image(uiImage: data.image)
-//                .resizable()
-//                .aspectRatio(contentMode: .fit)
             if let name = pantryItem.name {
                 Text(name)
                     .font(titleNoSubtitleFont)

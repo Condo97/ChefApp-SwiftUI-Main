@@ -32,12 +32,6 @@ struct RecipeSwipeCardRecipeDisplayView: View {
                         ProgressView()
                     }
                 }
-//            }
-//            Image(uiImage: uiImage)
-//                .resizable()
-//                .aspectRatio(contentMode: .fill)
-//                .frame(width: size.width, height: size.width)
-//                .aspectRatio(contentMode: .fill)
         } else {
             VStack {
                 ProgressView()

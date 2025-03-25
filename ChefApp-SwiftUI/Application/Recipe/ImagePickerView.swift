@@ -107,23 +107,6 @@ struct ImagePickerView: View {
                 count: 4,
                 offset: searchOffset * 4)
             
-//            var images: [UIImage] = []
-//            for imageURL in imageURLs {
-//                let urlRequest = URLRequest(url: imageURL)
-//                
-//                do {
-//                    // Do request
-//                    let (data, response) = try await URLSession.shared.data(for: urlRequest)
-//                    
-//                    // Try to parse data into image and if successful, add to image array
-//                    if let image = UIImage(data: data) {
-//                        images.append(image)
-//                    }
-//                } catch {
-//                    print("Error getting response when getting images from Bing search response in ImagePickerView: \(error)")
-//                }
-//            }
-            
             self.imageURLs = imageURLs
         } catch {
             // TODO: Handle Errors

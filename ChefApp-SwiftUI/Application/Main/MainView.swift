@@ -13,6 +13,7 @@ class MainViewModel: ObservableObject {
     
     /// Controls visibility of the entry prompt card
     @Published var isDisplayingEntryPromptCard = true
+    
     /// Controls visibility of the navigation header
     @Published var isDisplayingHeader = true
     
@@ -21,22 +22,28 @@ class MainViewModel: ObservableObject {
     
     /// Controls visibility of the panel view
     @Published var isShowingPanelView: Bool = false
+    
     /// Determines if panel presentation is allowed
     @Published var canPresentPanel: Bool = true
     
     /// ViewModel for camera-first pantry addition flow
     @Published var presentingAddToPantryDirectlyToCameraPopupViewModel: AddToPantryViewModel?
+    
     /// ViewModel for standard pantry addition flow
     @Published var presentingAddToPantryPopupViewModel: AddToPantryViewModel?
+    
     /// ViewModel for full pantry management view
     @Published var presentingPantryViewModel: PantryViewModel?
+    
     /// ViewModel for recipe generation swipe interface
     @Published var presentingRecipeSaveGenerationSwipeViewModel: RecipeSaveGenerationSwipeViewModel?
+    
     /// ViewModel for detailed recipe view
     @Published var presentingRecipeViewModel: RecipeViewModel?
     
     /// Controls settings view visibility
     @Published var isShowingSettingsView: Bool = false
+    
     /// Controls premium features view visibility
     @Published var isShowingUltraView: Bool = false
     
@@ -189,14 +196,20 @@ struct MainView: View {
                     }
                     .padding(.horizontal)
                     .padding(.bottom, 8)
-                    RecipesView(onSelect: { viewModel.presentingRecipeViewModel = RecipeViewModel(recipe: $0) })
+                    
+                    // Recipes View
+                    RecipesView(
+                        onSelect: { viewModel.presentingRecipeViewModel = RecipeViewModel(recipe: $0) })
+                    
                     Spacer(minLength: 214.0)
                 }
             }
             .background(Colors.background)
         }
+        .background(Colors.background)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
+            // Settings Button
             ToolbarItem(placement: .topBarLeading) {
                 Button(action: {
                     HapticHelper.doLightHaptic()
@@ -208,24 +221,30 @@ struct MainView: View {
                         .foregroundStyle(Colors.elementBackground)
                 }
             }
+            
+            // Logo
             LogoToolbarItem(foregroundColor: Colors.elementBackground)
+            
+            // Premium Button
             if !premiumUpdater.isPremium {
                 UltraToolbarItem(color: Colors.elementBackground)
             }
         }
         .toolbar(viewModel.isDisplayingHeader ? .visible : .hidden)
         .toolbarBackground(Colors.background, for: .navigationBar)
+        
+        // Settings View
         .navigationDestination(isPresented: $viewModel.isShowingSettingsView) {
             SettingsView(
                 premiumUpdater: premiumUpdater,
                 isShowing: $viewModel.isShowingSettingsView
             )
         }
+        
+        // Generate Recipe button
         .safeAreaInset(edge: .bottom) {
-            // Generate Recipe button
             MainGenerateRecipeButton(viewModel: viewModel)
         }
-        .background(Colors.background)
         
         // Add to pantry popup
         .addToPantryPopup(viewModel: $viewModel.presentingAddToPantryDirectlyToCameraPopupViewModel, showCameraOnAppear: true)
