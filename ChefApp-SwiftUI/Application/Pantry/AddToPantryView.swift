@@ -60,8 +60,10 @@ class AddToPantryViewModel: ObservableObject, Identifiable {
             HapticHelper.doWarningHaptic()
             
             // Set instance dupliactePantryItemsNames to dupliactePantryItemNames from error
-            self.duplicatePantryItemNames = duplicatePantryItemNames
-            alertShowingDuplicateObjectWhenInserting = true
+            await MainActor.run {
+                self.duplicatePantryItemNames = duplicatePantryItemNames
+                alertShowingDuplicateObjectWhenInserting = true
+            }
         } catch {
             // TODO: Handle errors
             print("Error parsing and saving bar items in body in InsertPantryItemView... \(error)")

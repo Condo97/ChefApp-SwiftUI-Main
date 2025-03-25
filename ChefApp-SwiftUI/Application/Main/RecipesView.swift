@@ -42,7 +42,6 @@ struct RecipesView: View {
                     HapticHelper.doLightHaptic()
                     
                     onSelect(recipe)
-//                    isShowingRecipeView = true
                 }) {
                     ZStack {
                         RecipeMiniView(
@@ -56,6 +55,7 @@ struct RecipesView: View {
                             .padding()
                             .background(Colors.foreground)
                             .clipShape(RoundedRectangle(cornerRadius: 28.0))
+                            .padding(.trailing, 8)
                         
                         HStack {
                             Spacer()

@@ -1,5 +1,5 @@
 //
-//  RecipeOfTheDayContainer.swift
+//  RecipeOfTheDayView.swift
 //  ChefApp-SwiftUI
 //
 //  Created by Alex Coundouriotis on 11/29/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecipeOfTheDayContainer: View {
+struct RecipeOfTheDaySwipeView: View {
     
     let onSelect: (_ recipe: Recipe) -> Void
     let onOpenAddToPantry: () -> Void
@@ -32,8 +32,6 @@ struct RecipeOfTheDayContainer: View {
     private var dailyRecipes: FetchedResults<Recipe>
     
     @StateObject private var recipeOfTheDayGenerator: RecipeOfTheDayGenerator = RecipeOfTheDayGenerator()
-    
-    @State private var isLoadingPreGeneration: Bool = false
     
     @State private var presentingRecipeOfTheDayGenerationSwipeViewModel: RecipeOfTheDayGenerationSwipeViewModel?
     
@@ -161,7 +159,7 @@ struct RecipeOfTheDayContainer: View {
                             authToken = try await AuthHelper.ensure()
                         } catch {
                             // TODO: [Error Handling] Handle Errors
-                            print("Error ensuring authToken in RecipeOfTheDayContainer... \(error)")
+                            print("Error ensuring authToken in RecipeOfTheDayView... \(error)")
                             return
                         }
                         
@@ -241,7 +239,7 @@ struct RecipeOfTheDayContainer: View {
 
 #Preview {
     
-    RecipeOfTheDayContainer(
+    RecipeOfTheDaySwipeView(
         onSelect: { recipe in
         
         },

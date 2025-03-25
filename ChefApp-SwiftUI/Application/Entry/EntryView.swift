@@ -26,8 +26,8 @@ class EntryViewModel: ObservableObject, Identifiable {
         "Enter Prompt..."
     ])
     
-    @State fileprivate var isDisplayingAdvancedOptions: Bool = false
-    @State fileprivate var isShowingPantrySelectionView: Bool = false
+    @Published var isDisplayingAdvancedOptions: Bool = false
+    @Published var isShowingPantrySelectionView: Bool = false
     
     init(
         subtitleMessage: String,
@@ -55,10 +55,13 @@ class EntryViewModel: ObservableObject, Identifiable {
  */
 struct EntryView: View {
     
+    // Initialization
+    
     @ObservedObject var viewModel: EntryViewModel
     let onGenerate: () -> Void
     let onDismiss: () -> Void
     
+    // Instance
     
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -140,6 +143,7 @@ struct EntryView: View {
                 viewModel: viewModel.presentingEntryPromptCardViewModel,
                 entryViewModel: viewModel,
                 onGenerate: onGenerate)
+            .padding(.horizontal)
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(Colors.background, for: .navigationBar)

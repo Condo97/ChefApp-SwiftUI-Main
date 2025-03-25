@@ -179,6 +179,7 @@ struct RecipeGenerationSwipeView: View {
     
     var body: some View {
         VStack {
+            // Recipe Cards
             RecipeSwipeView(
                 recipeGenerator: recipeGenerator,
                 recipeSwipeCardsViewModel: recipeSwipeCardsViewModel,
@@ -187,12 +188,15 @@ struct RecipeGenerationSwipeView: View {
                 onDetailViewSave: onDetailViewSave,
                 onClose: onClose)
             
+            // Swipe right to save label
             Text("swipe right to save")
                 .font(.body, 14)
                 .foregroundStyle(Colors.foregroundText)
                 .opacity(0.6)
             
+            // Control Buttons
             HStack {
+                // Undo
                 Button(action: {
                     withAnimation {
                         if let lastSwipedCard = recipeSwipeCardsViewModel.undo() {
@@ -211,6 +215,8 @@ struct RecipeGenerationSwipeView: View {
                 }
                 .disabled(recipeSwipeCardsViewModel.swipedCards.isEmpty)
                 .opacity(recipeSwipeCardsViewModel.swipedCards.isEmpty ? 0.2 : 1.0)
+                
+                // Skip
                 Button(action: {
                     if let topCard = recipeSwipeCardsViewModel.unswipedCards.reversed().first,
                        let recipe = topCard.recipe {
@@ -227,6 +233,7 @@ struct RecipeGenerationSwipeView: View {
                         .font(.body, 40.0)
                 }
                 
+                // Save
                 Button(action: {
                     if let topCard = recipeSwipeCardsViewModel.unswipedCards.reversed().first,
                        let recipe = topCard.recipe {
@@ -242,6 +249,8 @@ struct RecipeGenerationSwipeView: View {
                         .clipShape(Circle())
                         .font(.body, 40.0)
                 }
+                
+                // Pantry
                 Button(action: {
                     viewModel.presentingPantryViewModel = PantryViewModel(
                         showsEditButton: true,
@@ -256,6 +265,7 @@ struct RecipeGenerationSwipeView: View {
                 }
             }
             
+            // Entry Mini View
             Button(action: {
                 viewModel.presentingEntryViewModel = EntryViewModel(
                     subtitleMessage: "Tap a suggestion or ingredients to create.",
@@ -264,62 +274,7 @@ struct RecipeGenerationSwipeView: View {
                     selectedSuggestions: viewModel.suggestions,
                     showsTitle: false)
             }) {
-                // TODO: Entry Mini View
-                HStack {
-                    Spacer()
-                    
-                    VStack {
-                        if !viewModel.pantryItems.isEmpty {
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack {
-                                    ForEach(viewModel.pantryItems) { pantryItem in
-                                        if let name = pantryItem.name {
-                                            Text(name)
-                                                .font(.custom(Constants.FontName.body, size: 12.0))
-                                                .padding(.horizontal, 4)
-                                                .padding(.vertical, 2)
-                                                .background(Colors.background)
-                                                .clipShape(Capsule())
-                                        }
-                                    }
-                                }
-                            }
-                        } else {
-                            if let allPantryItems = viewModel.getAllPantryItems(in: viewContext), !allPantryItems.isEmpty {
-                                Text("Using all ingredients")
-                                    .font(.custom(Constants.FontName.heavy, size: 12.0))
-                            } else {
-                                Text("Using Demo Ingredients")
-                                    .font(.heavy, 12)
-                            }
-                        }
-                        
-                        Group {
-                            if viewModel.input.isEmpty {
-                                Text("*Tap to Add Prompt*")
-                                    .opacity(0.6)
-                            } else {
-                                Text(viewModel.input)
-                            }
-                        }
-                        .font(.custom(Constants.FontName.body, size: 14.0))
-                        
-                        if viewModel.suggestions.count > 0 {
-                            Text(viewModel.suggestions.joined(separator: ", "))
-                                .font(.custom(Constants.FontName.heavy, size: 10.0))
-                        }
-                    }
-                    
-                    Spacer()
-                    
-                    Image(systemName: "chevron.up")
-                }
-                .padding()
-                .foregroundStyle(Colors.foregroundText)
-                .frame(maxWidth: .infinity)
-                .background(Colors.foreground)
-                .clipShape(RoundedRectangle(cornerRadius: 14.0))
-                .padding(.horizontal)
+                RecipeGenerationSwipeEntryMini(viewModel: viewModel)
             }
         }
         .background(Colors.background)
@@ -328,9 +283,17 @@ struct RecipeGenerationSwipeView: View {
                 VStack {
                     EntryView(
                         viewModel: entryViewModel,
-                        onGenerate: { viewModel.onGenerate(recipeSwipeCardsViewModel: recipeSwipeCardsViewModel) },
+                        onGenerate: {
+                            // Move values to viewModel
+                            viewModel.pantryItems = entryViewModel.selectedPantryItems
+                            viewModel.input = entryViewModel.promptText
+                            viewModel.suggestions = entryViewModel.selectedSuggestions
+                            viewModel.generationAdditionalOptions = entryViewModel.isDisplayingAdvancedOptions ? entryViewModel.generationAdditionalOptions : .normal
+                            
+                            // Call onGenerate
+                            viewModel.onGenerate(recipeSwipeCardsViewModel: recipeSwipeCardsViewModel)
+                        },
                         onDismiss: { viewModel.presentingEntryViewModel = nil })
-                    .padding(.horizontal)
                 }
                 .background(Colors.background)
             }
@@ -340,6 +303,9 @@ struct RecipeGenerationSwipeView: View {
                 PantryView(
                     viewModel: presentingPantryViewModel,
                     onDismiss: {
+                        // Set pantry items to selected items in selection view model
+                        viewModel.pantryItems = presentingPantryViewModel.selectedItems
+                        
                         viewModel.presentingPantryViewModel = nil
                     })
                 .background(Colors.background)

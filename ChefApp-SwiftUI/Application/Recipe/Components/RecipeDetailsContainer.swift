@@ -11,6 +11,7 @@ struct RecipeDetailsContainer: View {
     
     @ObservedObject var recipe: Recipe
     @ObservedObject var recipeFinalizer: RecipeFinalizer
+    let isLoadingRegenerateDirections: Bool
     let cardColor: Color
     let finishUpdatingRecipe: () async -> Void
     let shouldRegenerateDirections: () -> Void
@@ -48,6 +49,7 @@ struct RecipeDetailsContainer: View {
             } else {
                 RecipeIngredientsList(
                     recipe: recipe,
+                    isLoadingRegenerateDirections: isLoadingRegenerateDirections,
                     shouldRegenerateDirections: shouldRegenerateDirections,
                     cardColor: cardColor,
                     ingredientsScrollOffset: ingredientsScrollOffset)

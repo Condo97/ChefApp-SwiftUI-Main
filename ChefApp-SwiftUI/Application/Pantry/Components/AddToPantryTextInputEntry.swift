@@ -21,58 +21,62 @@ struct AddToPantryTextInputEntry: View {
     @FocusState private var automaticEntryTextFieldFocusState
     
     var body: some View {
-        // Text field
-        TextField(placeholderText, text: $entryText)
-            .textFieldTickerTint(colorScheme == .light ? Colors.elementBackground : Colors.foregroundText)
-            .keyboardDismissingTextFieldToolbar("Done", color: Colors.elementBackground)
-            .focused($automaticEntryTextFieldFocusState)
-            .font(.custom(Constants.FontName.body, size: 17.0))
-            .foregroundColor(Colors.foregroundText)
-            .padding()
-            .background(Colors.foreground)
-            .clipShape(RoundedRectangle(cornerRadius: 20.0))
-            .padding(.horizontal)
-            .onSubmit {
-                // Set textField to focused to bring up keyboard
-                UIView.performWithoutAnimation {
-                    automaticEntryTextFieldFocusState = true
-                }
-                
-                // Parse entry text
-                onParseEntryText()
-            }
-        
-        // Add button
-        if !entryText.isEmpty {
-            Button(action: {
-                // Parse entry text
-                onParseEntryText()
-            }) {
-                ZStack {
-                    Text("Add")
-                        .font(.heavy, 20.0)
-                    Image(systemName: "return")
-                        .font(.body, 20.0)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                }
-                .foregroundStyle(Colors.elementText)
+        VStack {
+            // Text field
+            TextField(placeholderText, text: $entryText)
+                .textFieldTickerTint(colorScheme == .light ? Colors.elementBackground : Colors.foregroundText)
+                .keyboardDismissingTextFieldToolbar("Done", color: Colors.elementBackground)
+                .focused($automaticEntryTextFieldFocusState)
+                .font(.custom(Constants.FontName.body, size: 17.0))
+                .foregroundColor(Colors.foregroundText)
                 .padding()
+                .background(Colors.foreground)
+                .clipShape(RoundedRectangle(cornerRadius: 20.0))
+                .padding(.horizontal)
+                .onSubmit {
+                    // Set textField to focused to bring up keyboard
+                    UIView.performWithoutAnimation {
+                        automaticEntryTextFieldFocusState = true
+                    }
+                    
+                    // Parse entry text
+                    onParseEntryText()
+                }
+            
+            // Add button
+            if !entryText.isEmpty {
+                Button(action: {
+                    // Parse entry text
+                    onParseEntryText()
+                }) {
+                    ZStack {
+                        Text("Add")
+                            .font(.heavy, 20.0)
+                        Image(systemName: "return")
+                            .font(.body, 20.0)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                    }
+                    .foregroundStyle(Colors.elementText)
+                    .padding()
+                }
+                .foregroundColor(Colors.foregroundText)
+                .background(Colors.elementBackground)
+                .clipShape(RoundedRectangle(cornerRadius: 20.0))
+                .padding(.horizontal)
             }
-            .foregroundColor(Colors.foregroundText)
-            .background(Colors.elementBackground)
-            .clipShape(RoundedRectangle(cornerRadius: 20.0))
-            .padding(.horizontal)
+            
+            // Instructions
+            Text(instructionText)
+                .font(.custom(Constants.FontName.light, size: 14.0))
+                .multilineTextAlignment(.center)
+                .opacity(0.4)
+                .padding(.horizontal)
+            Text(instructionExampleText)
+                .font(.custom(Constants.FontName.lightOblique, size: 14.0))
+                .multilineTextAlignment(.center)
+                .opacity(0.4)
+                .padding(.horizontal)
         }
-        
-        // Instructions
-        Text(instructionText)
-            .font(.custom(Constants.FontName.light, size: 14.0))
-            .multilineTextAlignment(.center)
-            .opacity(0.4)
-        Text(instructionExampleText)
-            .font(.custom(Constants.FontName.lightOblique, size: 14.0))
-            .multilineTextAlignment(.center)
-            .opacity(0.4)
     }
     
 }

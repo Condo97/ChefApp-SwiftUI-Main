@@ -12,7 +12,7 @@ struct RecipeEditableIngredientView: View {
     @State var measuredIngredient: RecipeMeasuredIngredient
 //    @Binding var expandedPercentage: CGFloat
     @Binding var isExpanded: Bool
-    @Binding var isDisabled: Bool
+    var isDisabled: Bool
     var onEdit: () -> Void
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -22,10 +22,10 @@ struct RecipeEditableIngredientView: View {
     
     @State private var parsedMeasuredIngredient: MeasurementIngredientParser.ParsedMeasurementIngredient?
     
-    init(measuredIngredient: RecipeMeasuredIngredient, isExpanded: Binding<Bool>, isDisabled: Binding<Bool>, onEdit: @escaping () -> Void) {
+    init(measuredIngredient: RecipeMeasuredIngredient, isExpanded: Binding<Bool>, isDisabled: Bool, onEdit: @escaping () -> Void) {
         self._measuredIngredient = State(initialValue: measuredIngredient)
         self._isExpanded = isExpanded
-        self._isDisabled = isDisabled
+        self.isDisabled = isDisabled
         self.onEdit = onEdit
         self._parsedMeasuredIngredient = State(initialValue: MeasurementIngredientParser.parseFirstMeasurement(from: measuredIngredient.nameAndAmountModified ?? measuredIngredient.nameAndAmount ?? "", leastToGreatestPossibleFractionValues: MeasuredIngredientPickerView.defaultMinToMaxFractionStrings))
     }
@@ -131,7 +131,7 @@ struct RecipeEditableIngredientView: View {
     return RecipeEditableIngredientView(
         measuredIngredient: measuredIngredient,
         isExpanded: .constant(true),
-        isDisabled: .constant(false),
+        isDisabled: false,
         onEdit: {
             
         }

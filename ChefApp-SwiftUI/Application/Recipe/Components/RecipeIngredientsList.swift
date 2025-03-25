@@ -10,6 +10,7 @@ import SwiftUI
 struct RecipeIngredientsList: View {
     
     @ObservedObject var recipe: Recipe
+    let isLoadingRegenerateDirections: Bool
     let shouldRegenerateDirections: () -> Void
     let cardColor: Color
     let ingredientsScrollOffset: Int
@@ -19,7 +20,6 @@ struct RecipeIngredientsList: View {
     @State private var editingIngredient: RecipeMeasuredIngredient?
     
     @State private var isEditingIngredients: Bool = false
-    @State private var isLoadingRegeneratingDirections: Bool = false
     
     private var recipeEstimatedServings: Binding<Int> {
         Binding(
@@ -138,7 +138,7 @@ struct RecipeIngredientsList: View {
                                 RecipeEditableIngredientView(
                                     measuredIngredient: measuredIngredient,
                                     isExpanded: $isEditingIngredients,
-                                    isDisabled: $isLoadingRegeneratingDirections,
+                                    isDisabled: isLoadingRegenerateDirections,
                                     onEdit: {
                                         editingIngredient = measuredIngredient
                                     })
@@ -178,7 +178,7 @@ struct RecipeIngredientsList: View {
                                 shouldRegenerateDirections()
                             }) {
                                 ZStack {
-                                    if isLoadingRegeneratingDirections {
+                                    if isLoadingRegenerateDirections {
                                         HStack {
                                             Spacer()
                                             ProgressView()
@@ -199,8 +199,8 @@ struct RecipeIngredientsList: View {
                             .padding(8)
                             .background(Colors.elementBackground)
                             .clipShape(RoundedRectangle(cornerRadius: 24.0))
-                            .opacity(isLoadingRegeneratingDirections ? 0.4 : 1.0)
-                            .disabled(isLoadingRegeneratingDirections)
+                            .opacity(isLoadingRegenerateDirections ? 0.4 : 1.0)
+                            .disabled(isLoadingRegenerateDirections)
                             .padding(.top, 8)
                         }
                     }
@@ -213,7 +213,7 @@ struct RecipeIngredientsList: View {
                 VStack {
                     Spacer()
                     Text("Loading Ingredients & Instructions ...")
-                        .font(.custom(Constants.FontName.black, size: 32.0))
+                        .font(.custom(Constants.FontName.black, size: 20.0))
                     ProgressView()
                         .progressViewStyle(.circular)
                         .controlSize(.large)
@@ -274,6 +274,7 @@ struct RecipeIngredientsList: View {
         if let recipe {
             RecipeIngredientsList(
                 recipe: recipe,
+                isLoadingRegenerateDirections: false,
                 shouldRegenerateDirections: {
                     
                 },

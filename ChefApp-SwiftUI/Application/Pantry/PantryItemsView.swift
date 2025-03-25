@@ -46,7 +46,7 @@ struct PantryItemsView: View {
     }
     
     var list: some View {
-        SingleAxisGeometryReader(axis: .horizontal) { geo in
+//        SingleToupleAxisGeometryReader(axis: .horizontal) { width, height in
 //        GeometryReader { geo in
             VStack(alignment: .leading) {
                 ForEach(sectionedPantryItems) { pantryItems in
@@ -70,7 +70,7 @@ struct PantryItemsView: View {
                     }
                     
                     // TODO: It looks like this is not extending to the width of the view or something
-                    FlexibleView(availableWidth: geo.magnitude - 50, data: pantryItems, spacing: 8.0, alignment: .leading) { pantryItem in
+                    FlexibleView(availableWidth: 350, data: pantryItems, spacing: 8.0, alignment: .leading) { pantryItem in
                         PantryItemButton(
                             pantryItem: pantryItem,
                             selectionColor: selectionColor,
@@ -82,10 +82,10 @@ struct PantryItemsView: View {
                     }
                     .padding(.bottom, 8)
                     .padding([.leading, .trailing])
-//                    .frame(maxWidth: 400.0) // TODO: This is a quick fix! For when transitioning from pantry view to sheet view
+                    //                    .frame(maxWidth: 400.0) // TODO: This is a quick fix! For when transitioning from pantry view to sheet view
                 }
             }
-        }
+//        }
     }
 }
 

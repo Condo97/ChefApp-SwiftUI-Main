@@ -112,6 +112,7 @@ struct RecipeMiniView: View {
                         if let date = viewModel.date {
                             Text(NiceDateFormatter.dateFormatter.string(from: date))
                                 .font(.custom(Constants.FontName.body, size: 12.0))
+                                .opacity(0.6)
                         }
                     }
                     

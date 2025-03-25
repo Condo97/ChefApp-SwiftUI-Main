@@ -189,6 +189,7 @@ struct RecipeView: View {
                     RecipeDetailsContainer(
                         recipe: viewModel.recipe,
                         recipeFinalizer: recipeFinalizer,
+                        isLoadingRegenerateDirections: recipeDirectionsRegenerator.isRegeneratingDirections,
                         cardColor: viewModel.cardColor,
                         finishUpdatingRecipe: finishUpdatingRecipeIfNeeded,
                         shouldRegenerateDirections: { Task { await viewModel.resolveIngredientsAndRegenerateDirections(

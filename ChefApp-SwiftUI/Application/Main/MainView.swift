@@ -11,35 +11,55 @@ import Combine
 
 class MainViewModel: ObservableObject {
     
+    /// Controls visibility of the entry prompt card
     @Published var isDisplayingEntryPromptCard = true
+    /// Controls visibility of the navigation header
     @Published var isDisplayingHeader = true
     
+    /// Tracks if the easy pantry update container should be shown
     @Published var isShowingEasyPantryUpdateContainer: Bool = false
     
+    /// Controls visibility of the panel view
     @Published var isShowingPanelView: Bool = false
+    /// Determines if panel presentation is allowed
     @Published var canPresentPanel: Bool = true
     
+    /// ViewModel for camera-first pantry addition flow
     @Published var presentingAddToPantryDirectlyToCameraPopupViewModel: AddToPantryViewModel?
+    /// ViewModel for standard pantry addition flow
     @Published var presentingAddToPantryPopupViewModel: AddToPantryViewModel?
+    /// ViewModel for full pantry management view
     @Published var presentingPantryViewModel: PantryViewModel?
+    /// ViewModel for recipe generation swipe interface
     @Published var presentingRecipeSaveGenerationSwipeViewModel: RecipeSaveGenerationSwipeViewModel?
+    /// ViewModel for detailed recipe view
     @Published var presentingRecipeViewModel: RecipeViewModel?
     
+    /// Controls settings view visibility
     @Published var isShowingSettingsView: Bool = false
+    /// Controls premium features view visibility
     @Published var isShowingUltraView: Bool = false
     
+    /// Handles recipe generation state and logic
     @Published var recipeGenerationViewModel: RecipeGenerationViewModel = RecipeGenerationViewModel(
         pantryItems: [],
         suggestions: [],
         input: "",
-        generationAdditionalOptions: .normal) // Shows RecipeGenerationView if filled
+        generationAdditionalOptions: .normal)
     
     var recipeGenerator = RecipeGenerator()
     
+    /// Determines if sheet craft text should be displayed
     var shouldShowSheetCraftText: Bool {
         true
     }
     
+    /// Handles deep link URLs for recipe sharing
+    /// - Parameters:
+    ///   - url: The incoming URL to process
+    ///   - recipeGenerator: Recipe generation service
+    ///   - recipeBingImageGenerator: Image generation service
+    ///   - managedContext: Core Data context
     func handleOnOpenURL(
         url: URL,
         recipeGenerator: RecipeGenerator,
@@ -85,12 +105,14 @@ class MainViewModel: ObservableObject {
 
 struct MainView: View {
     
+    // Initialization Variables
+    
     @ObservedObject var viewModel: MainViewModel
     @StateObject var recipeGenerator: RecipeGenerator = RecipeGenerator()
     @StateObject var recipeBingImageGenerator: RecipeBingImageGenerator = RecipeBingImageGenerator()
+    let loadingTikTokRecipeProgress: TikTokSourceRecipeGenerator.LoadingProgress?
     
-    let loadingTikTokRecipeProgress: TikTokSourceRecipeGenerator.LoadingProgress? // TODO: Implement better initialization or put in ViewModel
-    
+    // Instance Variables
     
     @Environment(\.managedObjectContext) private var viewContext
     @Namespace private var panelNamespace
@@ -120,11 +142,13 @@ struct MainView: View {
                         LoadingTikTokRecipeView(progress: loadingTikTokRecipeProgress)
                     }
                     
-                    RecipeOfTheDayContainer(
+                    // Recipe of The Day Swipe View
+                    RecipeOfTheDaySwipeView(
                         onSelect: { viewModel.presentingRecipeViewModel = RecipeViewModel(recipe: $0) },
                         onOpenAddToPantry: { viewModel.presentingAddToPantryPopupViewModel = AddToPantryViewModel() })
                     .padding(.vertical)
                     
+                    // Pantry Controls
                     MainPantryControls(
                         showAddPantryItemDirectlyToCameraPopup: {
                             withAnimation {
@@ -140,6 +164,7 @@ struct MainView: View {
                     .padding([.leading, .trailing])
                     
                     // Easy Pantry Update Button
+                    // - only shows when updateDate is in the past
                     if pantryItems.contains(where: {
                         if let updateDate = $0.updateDate {
                             return updateDate <= Calendar.current.date(byAdding: .day, value: -constantsUpdater.easyPantryUpdateContainerOlderThanDays, to: Date())!
@@ -155,6 +180,8 @@ struct MainView: View {
                     }
                     
                     Spacer(minLength: 24.0)
+                    
+                    // Recipes List
                     HStack {
                         Text("Recipes")
                             .font(.custom(Constants.FontName.heavy, size: 20.0))
@@ -163,14 +190,6 @@ struct MainView: View {
                     .padding(.horizontal)
                     .padding(.bottom, 8)
                     RecipesView(onSelect: { viewModel.presentingRecipeViewModel = RecipeViewModel(recipe: $0) })
-                        .sheet(item: $viewModel.presentingRecipeViewModel) { recipeViewModel in
-                            RecipeView(
-                                viewModel: recipeViewModel,
-                                onDismiss: { viewModel.presentingRecipeViewModel = nil }
-                            )
-                            .background(Colors.background)
-                            .presentationCompactAdaptation(.fullScreenCover)
-                        }
                     Spacer(minLength: 214.0)
                 }
             }
@@ -203,59 +222,19 @@ struct MainView: View {
             )
         }
         .safeAreaInset(edge: .bottom) {
-            Button(action: {
-                // Do light haptic
-                HapticHelper.doLightHaptic()
-                
-                // Show entry view
-                withAnimation {
-                    // TODO: Make sure to test this !!! This is important I'm making some changes now.. need to construct those
-                    // TODO: It should just work correctly. Figure out what this button is specifically, pretty sure it's the recipe start gen button, and make sure that it works optimally
-                    viewModel.presentingRecipeSaveGenerationSwipeViewModel = RecipeSaveGenerationSwipeViewModel(
-                        recipeGenerationSwipeViewModel: RecipeGenerationSwipeViewModel(
-                            pantryItems: [],
-                            suggestions: [],
-                            input: "",
-                            generationAdditionalOptions: .normal))
-                }
-            }) {
-                ZStack {
-                    Spacer()
-                    Text("Create Recipe")
-                        .font(.custom("copperplate-bold", size: 24.0))
-                        .foregroundStyle(Colors.elementText)
-                    
-                    HStack {
-                        Spacer()
-                        
-                        Text(recipeGenerator.isCreating ? "" : "\(Image(systemName: "arrow.right"))")
-                            .font(.custom("copperplate-bold", size: 17.0))
-                            .foregroundStyle(Colors.elementText)
-                        
-                        if recipeGenerator.isCreating {
-                            ProgressView()
-                                .tint(Colors.elementText)
-                        }
-                    }
-                    Spacer()
-                }
-            }
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 14.0)
-                    .fill(Colors.elementBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 20.0))
-            .bounceable()
-            .padding()
-            .background(Material.regular)
+            // Generate Recipe button
+            MainGenerateRecipeButton(viewModel: viewModel)
         }
         .background(Colors.background)
+        
         // Add to pantry popup
         .addToPantryPopup(viewModel: $viewModel.presentingAddToPantryDirectlyToCameraPopupViewModel, showCameraOnAppear: true)
         .addToPantryPopup(viewModel: $viewModel.presentingAddToPantryPopupViewModel, showCameraOnAppear: false)
+        
         // EasyPantryUpdateContainer popup
         .easyPantryUpdatePopup(isPresented: $viewModel.isShowingEasyPantryUpdateContainer)
-        // Sheet for all pantry items view
+        
+        // All Pantry Items popup
         .pantryViewPopup(
             pantryViewModel: $viewModel.presentingPantryViewModel,
             onDismiss: {
@@ -275,7 +254,18 @@ struct MainView: View {
                             generationAdditionalOptions: .normal))
                 }
             })
-        // Create recipe swipe cards
+        
+        // Recipe View
+        .sheet(item: $viewModel.presentingRecipeViewModel) { recipeViewModel in
+            RecipeView(
+                viewModel: recipeViewModel,
+                onDismiss: { viewModel.presentingRecipeViewModel = nil }
+            )
+            .background(Colors.background)
+            .presentationCompactAdaptation(.fullScreenCover)
+        }
+        
+        // Recipe Save Generation Swipe View
         .fullScreenCover(item: $viewModel.presentingRecipeSaveGenerationSwipeViewModel) { recipeSaveGenerationSwipeViewModel in
             NavigationStack {
                 RecipeSaveGenerationSwipeView(
@@ -299,6 +289,8 @@ struct MainView: View {
                 }
             }
         }
+        
+        // Handle onOpenURL
         .onOpenURL(perform: {
             viewModel.handleOnOpenURL(
                 url: $0,
@@ -321,4 +313,3 @@ struct MainView: View {
     .environmentObject(ProductUpdater())
     .environmentObject(RemainingUpdater())
 }
-
